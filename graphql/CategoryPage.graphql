@@ -1,0 +1,24 @@
+query CategoryPage($url: String!) {
+  ...CategoryQueryFragment
+}
+
+query GetCategoryChildrens($url: String!) {
+  categories(filters: { url_path: { eq: $url } }) {
+    items {
+      children {
+        uid
+        name
+        url_path
+        image
+        description
+        meta_description
+        url_key
+        children {
+          uid
+          name
+          url_key
+        }
+      }
+    }
+  }
+}

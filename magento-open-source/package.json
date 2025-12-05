@@ -1,0 +1,9 @@
+{
+  "name": "@graphcommerce/magento-open-source",
+  "version": "9.0.3",
+  "private": true,
+  "sideEffects": false,
+  "dependencies": {
+    "@graphcommerce/graphql": "9.0.3"
+  }
+}

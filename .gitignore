@@ -1,0 +1,46 @@
+# dependencies
+node_modules
+
+# next.js
+.next/
+out/
+.vercel
+next-env.d.ts
+._tmp*
+.swc
+
+# misc
+.DS_Store
+.env*
+!.env.example
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# application
+**/public/workbox-*.js*
+**/public/sw.js*
+**/public/sitemap*.xml
+**/public/robots.txt
+
+*.gql.ts
+.yarn/
+.yarn/patches
+.yarn/releases
+.yarn/sdks
+.yarn/versions
+.yarn/cache
+.yarn/install-state.gz
+.yarn/install-state.json
+.yarn/install-state.json.lock
+.yarn/install-state.json.lock.lock
+.yarn/install-state.json.lock.lock.lock
+# application
+.mesh
+*.tsbuildinfo
+
+# managed by: graphcommerce
+pages/.well-known/assetlinks.json.tsx
+# end managed by: graphcommerce
