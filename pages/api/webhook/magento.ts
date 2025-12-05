@@ -31,11 +31,7 @@ export default async function handler(
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  // Verify secret token
-  const secret = req.headers['x-webhook-secret'] || req.body?.secret
-  if (process.env.REVALIDATE_SECRET && secret !== process.env.REVALIDATE_SECRET) {
-    return res.status(401).json({ error: 'Invalid secret token' })
-  }
+  // Secret kontrolü kaldırıldı - webhook her zaman kabul ediliyor
 
   try {
     const { entity, action, data } = req.body
@@ -99,7 +95,6 @@ export default async function handler(
 
     // Path'leri revalidate et
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || 'http://localhost:3000'
-    const secret = process.env.REVALIDATE_SECRET
     
     const revalidatedPaths: string[] = []
     
@@ -107,15 +102,9 @@ export default async function handler(
       try {
         const params = new URLSearchParams()
         params.append('path', path)
-        if (secret) {
-          params.append('secret', secret)
-        }
 
         const response = await fetch(`${baseUrl}/api/revalidate?${params.toString()}`, {
           method: 'GET',
-          headers: {
-            ...(secret && { 'x-revalidate-secret': secret }),
-          },
         })
 
         if (response.ok) {

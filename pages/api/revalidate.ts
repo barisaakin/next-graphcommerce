@@ -26,13 +26,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<RevalidateResponse | { error: string }>,
 ) {
-  // Check for secret token to prevent unauthorized access
-  if (process.env.REVALIDATE_SECRET) {
-    const secret = req.query.secret || req.headers['x-revalidate-secret']
-    if (secret !== process.env.REVALIDATE_SECRET) {
-      return res.status(401).json({ error: 'Invalid secret token' })
-    }
-  }
+  // Secret kontrolü kaldırıldı - revalidate her zaman kabul ediliyor
 
   try {
     const { tag, path: pathToRevalidate } = req.query
